@@ -13,6 +13,8 @@ export class UserService {
         createUserDto.password = await hashSync(createUserDto.password, 10);
         const user = {
             ...createUserDto,
+            type_user: 1,
+            status: true,
         };
         return this.userRepository.save(user);
     }

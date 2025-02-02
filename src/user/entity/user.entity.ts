@@ -31,4 +31,10 @@ export class User{
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({ nullable: false })
+  type_user: number;
+  
+  @Column({ nullable: false })
+  status: boolean;
 }
