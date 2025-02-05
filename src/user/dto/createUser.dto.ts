@@ -1,5 +1,6 @@
 import { IsDate, IsNotEmpty, IsString, Min, MinLength } from "class-validator";
 import { User } from "../entity/user.entity";
+import { ReturnAddressDto } from "src/address/dto/createAddress.dto";
 
 export class CreateUserDto {
 
@@ -27,11 +28,14 @@ export class ReturnUserDto{
     email: string;
     phone: string;
     cpf: string; 
+    address?: ReturnAddressDto[];
     constructor(userEntity: User){
         this.id = userEntity.id
         this.name = userEntity.name
         this.email = userEntity.email
         this.phone = userEntity.phone
         this.cpf = userEntity.cpf
+
+        this.address = userEntity.address ? userEntity.address.map((address) => new ReturnAddressDto(address)) : undefined
     }
 }

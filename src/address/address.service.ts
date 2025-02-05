@@ -28,8 +28,7 @@ export class AddressService {
             created_at: new Date,
             updated_at: new Date
         }
-
-        return await this.addressRepository.create({
+        return await this.addressRepository.save({
             ...address,
             user_id
         })
