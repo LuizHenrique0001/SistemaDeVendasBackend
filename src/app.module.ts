@@ -8,6 +8,7 @@ import { AddressModule } from './address/address.module';
 import { State } from './state/entity/state.entity';
 import { City } from './city/entity/city.entity';
 import { Address } from './address/entity/address.entity';
+import { CacheModule } from './cache/cache.module';
 
 @Module({
   imports: [ 
@@ -25,6 +26,7 @@ import { Address } from './address/entity/address.entity';
       entities: [State, User, City, Address],
       synchronize: true,
     }),
+    CacheModule,
     
   ],
 })

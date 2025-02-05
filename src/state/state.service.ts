@@ -21,4 +21,9 @@ export class StateService {
             };
         return await this.stateRepository.save(state);
     }
+
+    async findStateById(id: number) {
+        return await this.stateRepository.findOne({where: {id}});
+    }
+
 }
