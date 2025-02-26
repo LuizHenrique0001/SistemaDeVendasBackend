@@ -9,6 +9,7 @@ import { State } from './state/entity/state.entity';
 import { City } from './city/entity/city.entity';
 import { Address } from './address/entity/address.entity';
 import { CacheModule } from './cache/cache.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [ 
@@ -27,6 +28,7 @@ import { CacheModule } from './cache/cache.module';
       synchronize: true,
     }),
     CacheModule,
+    AuthModule,
     
   ],
 })

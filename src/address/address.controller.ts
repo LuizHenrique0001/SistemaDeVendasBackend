@@ -10,6 +10,9 @@ export class AddressController {
     @UsePipes(ValidationPipe)
     @Post(':userId')
     async createAddress(@Param('userId') userId: number, @Body() addressDto: AddressDto){
+
+        console.log(addressDto)
+
         return this.addressService.createAddress(userId, addressDto)
     }
 

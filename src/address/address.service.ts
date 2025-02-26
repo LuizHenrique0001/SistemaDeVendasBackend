@@ -15,10 +15,10 @@ export class AddressService {
 ){}
 
     async createAddress(user_id: number, addressDto: AddressDto): Promise<Address>{
-        
-        const user = await this.userService.findUserById(user_id)
 
-        const city = await this.cityService.findCityById(addressDto.city_id)
+        await this.userService.findUserById(user_id)
+
+        await this.cityService.findCityById(addressDto.city_id)
 
         const address = {
             complement: addressDto.complement,
@@ -28,6 +28,7 @@ export class AddressService {
             created_at: new Date,
             updated_at: new Date
         }
+        
         return await this.addressRepository.save({
             ...address,
             user_id
