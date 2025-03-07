@@ -10,13 +10,13 @@ import { City } from './city/entity/city.entity';
 import { Address } from './address/entity/address.entity';
 import { CacheModule } from './cache/cache.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './guards/roles.guard';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [ 
-    UserModule,
-    StateModule,
-    CityModule,
-    AddressModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -27,9 +27,20 @@ import { AuthModule } from './auth/auth.module';
       entities: [State, User, City, Address],
       synchronize: true,
     }),
+    ConfigModule.forRoot(),
+    UserModule,
+    StateModule,
+    CityModule,
+    AddressModule,
     CacheModule,
     AuthModule,
-    
+    JwtModule,
   ],
+  providers:[
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ]
 })
 export class AppModule {}
